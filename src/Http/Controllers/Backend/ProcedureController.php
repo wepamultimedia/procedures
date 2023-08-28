@@ -10,11 +10,9 @@ use Inertia\Response;
 use Wepa\Core\Http\Controllers\Backend\InertiaController;
 use Wepa\Procedures\Http\Requests\CategoryRequest;
 use Wepa\Procedures\Http\Requests\ProcedureRequest;
-use Wepa\Procedures\Http\Resources\CategoryResource;
 use Wepa\Procedures\Http\Resources\ProcedureResource;
 use Wepa\Procedures\Models\Category;
 use Wepa\Procedures\Models\Procedure;
-use Wepa\Procedures\Models\ProcedureFile;
 
 class ProcedureController extends InertiaController
 {
@@ -123,6 +121,4 @@ class ProcedureController extends InertiaController
 
         return back();
     }
-
-
 }

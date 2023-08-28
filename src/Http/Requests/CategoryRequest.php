@@ -26,7 +26,7 @@ class CategoryRequest extends FormRequest
     public function rules()
     {
         Validator::extend('has_procedures', function ($attribute, $value) {
-            return !Category::hasProcedures($value);
+            return ! Category::hasProcedures($value);
         });
 
         return [
@@ -38,7 +38,7 @@ class CategoryRequest extends FormRequest
     public function messages()
     {
         return array_merge(parent::messages(), [
-           'parent_id.has_procedures' => __('procedures::category.has_procedures', ['category' => $this->name])
+            'parent_id.has_procedures' => __('procedures::category.has_procedures', ['category' => $this->name]),
         ]);
     }
 }

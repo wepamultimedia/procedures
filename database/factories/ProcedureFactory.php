@@ -12,6 +12,7 @@ use Wepa\Procedures\Models\Procedure;
 class ProcedureFactory extends Factory
 {
     protected static int $position = 1;
+
     protected $model = Procedure::class;
 
     public function configure(): ProcedureFactory
@@ -34,7 +35,7 @@ class ProcedureFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'body' => $this->faker->paragraph
+            'body' => $this->faker->paragraph,
         ];
     }
 }
