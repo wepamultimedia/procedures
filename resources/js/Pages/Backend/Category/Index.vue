@@ -5,7 +5,7 @@ export default {
     layout: (h, page) => h(MainLayout, {
         title: "Categories",
         icon: "view-list",
-        bc: [{label: "faq"},{label: "categories"}]
+        bc: [{label: "procedures"},{label: "categories"}]
     }, () => page)
 };
 </script>
@@ -17,7 +17,7 @@ import Icon from "@core/Components/Heroicon.vue";
 const props = defineProps(["categories"]);
 
 const updatePosition = (item, position) => {
-    router.put(route("admin.faq.categories.position", {
+    router.put(route("admin.procedures.categories.position", {
         category: item.id,
         position: position
     }), {},{
@@ -30,7 +30,7 @@ const updatePosition = (item, position) => {
 <template>
     <div class="flex justify-between my-0 items-center h-14 rounded-lg overflow-hidden my-6">
         <span class="text-skin-base  font-medium text-xl">{{ __("categories_list") }}</span>
-        <Link :href="route('admin.faq.categories.create')"
+        <Link :href="route('admin.procedures.categories.create')"
               as="button"
               class="btn btn-success text-sm"
               type="button">{{ __("create") }}
@@ -45,11 +45,11 @@ const updatePosition = (item, position) => {
                     mb-20">
         <Table :columns="['name', 'position']"
                :data="categories"
-               delete-route="admin.faq.categories.destroy"
+               delete-route="admin.procedures.categories.destroy"
                divide-x
-               edit-route="admin.faq.categories.edit"
+               edit-route="admin.procedures.categories.edit"
                even
-               search-route="admin.faq.categories.index">
+               search-route="admin.procedures.categories.index">
             <template #col-content-position="{item}">
                 <div class="flex items-center justify-start">
                     <div class="inline-flex"

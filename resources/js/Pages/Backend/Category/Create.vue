@@ -5,22 +5,34 @@ export default {
     layout: (h, page) => h(MainLayout, {
         title: "Categories",
         icon: "view-list",
-        bc: [{label: 'procedures'},{label: "categories", route: "admin.procedures.categories.index"}, {label: "create"}]
+        bc: [
+            {label: 'procedures'}, {
+                label: "categories",
+                route: "admin.procedures.categories.index"
+            }, {label: "create"}
+        ]
     }, () => page)
 };
 </script>
 <script setup>
 import {__} from "@core/Mixins/translations";
-import {useForm} from "@inertiajs/vue3";
+import {Link, useForm} from "@inertiajs/vue3";
 import SaveFormButton from "@core/Components/Form/SaveFormButton.vue";
 import Input from "@core/Components/Form/Input.vue";
 import {ref} from "vue";
+import {useStore} from "vuex";
+
+const props = defineProps(["parents", "parent"])
 
 const selectedLocale = ref();
 
 const form = useForm({
-    translations: {},
+    parent_id: props.parent?.id || null,
+    name: null,
 });
+
+const store = useStore();
+
 function submit() {
     form.post(route("admin.procedures.categories.store"), {
         preserveScroll: true, preserveState: true,
@@ -49,14 +61,21 @@ function submit() {
                         shadow">
                     <div class="grid grid-cols-6 p-6">
                         <div class="col-span-6 sm:col-span-6 lg:col-span-5 xl:col-span-4 mb-6">
+                            <span class="font-semibold" v-if="parents.length">{{__('subcategory_of')}}:</span>
+                            <ul class="mb-2 flex" v-if="parents.length">
+                                <li class="text-sm" v-for="(parent, index) in parents" :key="parent.id" >
+                                    <Link :href="route('admin.procedures.categories.edit', {category: parent.id})">
+                                        {{ parent.name }} <span class="px-2" v-if="(index + 1) < parents.length">/</span>
+                                    </Link>
+                                </li>
+                            </ul>
                             <Input v-model="form"
                                    v-model:locale="selectedLocale"
                                    :errors="form.errors"
                                    :label="__('name')"
                                    autofocus
-                                   required
                                    name="name"
-                                   translation/>
+                                   required/>
                         </div>
                     </div>
                     <div class="rounded-b-lg overflow-hidden">

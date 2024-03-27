@@ -9,13 +9,12 @@ use Wepa\Procedures\Commands\ProceduresDemoCommand;
 use Wepa\Procedures\Commands\ProceduresInstallCommand;
 use Wepa\Procedures\Commands\ProceduresUninstallCommand;
 use Wepa\Procedures\Commands\ProceduresUpdateCommand;
-use Wepa\Procedures\Database\seeders\DefaultSeeder;
 
 class ProceduresServiceProvider extends PackageServiceProvider
 {
     public function bootingPackage()
     {
-        $this->hasSeeders([DefaultSeeder::class]);
+        $this->hasSeeders([]);
 
         $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
 
