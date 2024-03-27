@@ -68,7 +68,7 @@ class CategoryController extends InertiaController
     /**
      * Show the form for creating a new resource.
      */
-    public function create(Category $parent = null): Response
+    public function create(?Category $parent = null): Response
     {
         session()->flash('backUrl', url()->previous());
         $category = new Category(['parent_id' => $parent?->id]);

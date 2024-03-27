@@ -84,7 +84,7 @@ class Category extends Model
         return (bool) Procedure::whereCategoryId($id)->count();
     }
 
-    public static function hasChildren(int $id = null): bool
+    public static function hasChildren(?int $id = null): bool
     {
         if (! $id) {
             $id = self::$id;

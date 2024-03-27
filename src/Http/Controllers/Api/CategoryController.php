@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 
 class CategoryController extends Controller
 {
-    public function index(int $parentId = null)
+    public function index(?int $parentId = null)
     {
 
     }
