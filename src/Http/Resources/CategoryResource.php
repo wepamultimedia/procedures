@@ -3,7 +3,6 @@
 namespace Wepa\Procedures\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use Wepa\Procedures\Models\Category;
 
 class CategoryResource extends JsonResource
 {

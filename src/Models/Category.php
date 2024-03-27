@@ -21,6 +21,7 @@ use Wepa\Procedures\Database\Factories\CategoryFactory;
  * @property array $fillables
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Category newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Category query()
@@ -30,6 +31,7 @@ use Wepa\Procedures\Database\Factories\CategoryFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereParentId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Category whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Category extends Model
@@ -40,11 +42,12 @@ class Category extends Model
     private static array $_categories = [];
 
     protected $table = 'procedures_categories';
+
     protected $fillable = [
         'parent_id',
         'name',
         'image',
-        'position'
+        'position',
     ];
 
     public static function fillables(string $separator = '/'): array
@@ -54,7 +57,7 @@ class Category extends Model
         $fillableCategories = [];
 
         foreach ($categories as $category) {
-            if (!self::hasChildren($category['id'])) {
+            if (! self::hasChildren($category['id'])) {
                 $parents = self::getParents($category);
                 $parentsNames = Arr::pluck($parents, 'name');
                 $parentsNames[] = $category['name'];
@@ -69,7 +72,7 @@ class Category extends Model
 
     public static function categoriesArray(): array
     {
-        if (!self::$_categories) {
+        if (! self::$_categories) {
             return self::$_categories = self::orderBy('position')->get()->toArray();
         }
 
@@ -78,12 +81,12 @@ class Category extends Model
 
     public static function hasProcedures(int $id)
     {
-        return (bool)Procedure::whereCategoryId($id)->count();
+        return (bool) Procedure::whereCategoryId($id)->count();
     }
 
     public static function hasChildren(int $id = null): bool
     {
-        if (!$id) {
+        if (! $id) {
             $id = self::$id;
         }
 
@@ -112,19 +115,21 @@ class Category extends Model
                 }
             }
         }
-        if ($reverse){
+        if ($reverse) {
             $parents = array_reverse($parents);
         }
+
         return $parents;
     }
 
     public function label(): Attribute
     {
         return Attribute::make(
-            get: function (){
+            get: function () {
                 $parents = self::getParents($this->toArray());
                 $parentsNames = Arr::pluck($parents, 'name');
                 $parentsNames[] = $this->name;
+
                 return Arr::join($parentsNames, '/');
             }
         );

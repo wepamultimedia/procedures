@@ -107,8 +107,7 @@ class CategoryController extends InertiaController
         $category->update($params);
         $category->touch();
 
-
-        if($category->parent_id){
+        if ($category->parent_id) {
             $backUrl = route('admin.procedures.categories.edit', ['category' => $category->parent_id]);
         } else {
             $backUrl = route('admin.procedures.categories.index');
@@ -127,6 +126,4 @@ class CategoryController extends InertiaController
 
         return back();
     }
-
-
 }

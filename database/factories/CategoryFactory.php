@@ -11,6 +11,7 @@ use Wepa\Procedures\Models\Category;
 class CategoryFactory extends Factory
 {
     protected static int $position = 1;
+
     protected $model = Category::class;
 
     public function configure(): CategoryFactory
@@ -31,7 +32,7 @@ class CategoryFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'image' => $this->faker->imageUrl
+            'image' => $this->faker->imageUrl,
         ];
     }
 }

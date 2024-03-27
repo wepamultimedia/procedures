@@ -19,6 +19,7 @@ use Wepa\Procedures\Database\Factories\ProcedureFactory;
  * @property int $position
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|Procedure newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Procedure newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Procedure query()
@@ -28,6 +29,7 @@ use Wepa\Procedures\Database\Factories\ProcedureFactory;
  * @method static \Illuminate\Database\Eloquent\Builder|Procedure whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Procedure whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Procedure whereUpdatedAt($value)
+ *
  * @mixin \Eloquent
  */
 class Procedure extends Model
@@ -39,7 +41,7 @@ class Procedure extends Model
         'category_id',
         'name',
         'body',
-        'position'
+        'position',
     ];
 
     protected $table = 'procedures_procedures';

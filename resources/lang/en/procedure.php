@@ -1,4 +1,5 @@
 <?php
+
 return [
     'procedures' => 'Procedures',
     'categories' => 'Categories',

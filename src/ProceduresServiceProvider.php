@@ -33,6 +33,7 @@ class ProceduresServiceProvider extends PackageServiceProvider
             __DIR__.'/../tests/Feature' => base_path('tests/Feature/Procedures'),
         ], ['procedures-tests']);
     }
+
     public function configurePackage(Package $package): void
     {
         /*
@@ -51,7 +52,7 @@ class ProceduresServiceProvider extends PackageServiceProvider
                 ProceduresInstallCommand::class,
                 ProceduresUninstallCommand::class,
                 ProceduresDemoCommand::class,
-                ProceduresUpdateCommand::class
+                ProceduresUpdateCommand::class,
             ]);
     }
 

@@ -12,12 +12,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $procedure_id
  * @property string $name
  * @property string $file_url
+ *
  * @method static \Illuminate\Database\Eloquent\Builder|ProcedureFile newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProcedureFile newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|ProcedureFile query()
  * @method static \Illuminate\Database\Eloquent\Builder|ProcedureFile whereFile($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProcedureFile whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|ProcedureFile whereProcedureId($value)
+ *
  * @mixin \Eloquent
  */
 class ProcedureFile extends Model
@@ -31,6 +33,6 @@ class ProcedureFile extends Model
     protected $fillable = [
         'procedure_id',
         'name',
-        'file_url'
+        'file_url',
     ];
 }
